@@ -1,0 +1,41 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      enabled: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor: trace
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka
+  instance:
+    prefer-ip-address: true
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+feign:
+  httpclient:
+    enabled: true
+
+jwt:
+  key: ${JWT_SECRET_KEY:W9OMCk4VNdPpCzTB0JltwhOZmXkn6eqB81J27cXy8frZZy+2fNMcUxpObC0JB5y6}
+  refreshKey: ${JWT_SECRET_REFRESH_KEY:mF2qDckO2fPuOx9i/tEgLJHheBWElCVOHYuESW/bdKksiCOsGpHAKADjcQlBZrUD}
+  expirationSec: 3600 # 1h
+  refreshExpirationSec: 1800 # 30m
+  issuer: localhost
+  audience: localhost
+
+app:
+  openfeign:
+    userClient: ${USER_SERVICE_URL:http://localhost:8082/api/vi/user}
