@@ -1,10 +1,5 @@
 package org.otus.platform.gateway.security.config;
 
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.otus.platform.gateway.client.UserClient;
 import org.otus.platform.gateway.security.filter.JwtTokenFilter;
 import org.otus.platform.gateway.security.jwt.JwtService;
@@ -27,7 +22,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableMethodSecurity
 class SecurityConfig {
-    final String SECURITY_SCHEME_NAME = "bearerAuth";
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -46,23 +40,6 @@ class SecurityConfig {
         return new UnauthorizedErrorAuthenticationEntryPoint();
     }
 
-    @Bean
-    public OpenAPI openAPI() {
-        return new OpenAPI()
-                .addSecurityItem(new SecurityRequirement()
-                        .addList("bearerAuth"))
-                .components(new Components()
-                        .addSecuritySchemes(SECURITY_SCHEME_NAME, new SecurityScheme()
-                                .name(SECURITY_SCHEME_NAME)
-                                .type(SecurityScheme.Type.HTTP)
-                                .scheme("bearer")
-                                .bearerFormat("JWT")))
-                .info(new Info()
-                        .title("Gateway API")
-                        .description("Online learning platform")
-                        .version("1.0")
-                );
-    }
 
     @Bean
     public SecurityFilterChain filterChain(

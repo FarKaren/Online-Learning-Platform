@@ -1,5 +1,7 @@
 package org.otus.platform.gateway.controller.userservice;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,17 @@ import java.util.UUID;
 @RequestMapping("api/v1/user-profile")
 @Validated
 @RequiredArgsConstructor
+@Tag(
+        name = "User profile controller",
+        description = "User profile API"
+)
 public class UserProfileController {
 
     private final UserProfileService userProfileService;
 
     @PutMapping("/update")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @Operation(summary = "Update user")
     ResponseEntity<UpdateUserResponse> updateUser(@Valid @RequestBody UpdateUserRequest request) {
         var response = userProfileService.updateUser(request);
         return ResponseEntity.ok(response);
@@ -31,6 +38,7 @@ public class UserProfileController {
 
     @PutMapping("/update/role")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Operation(summary = "Update user role")
     ResponseEntity<UpdateUserResponse> updateUserRole(
             @NotNull @RequestParam("id") UUID id,
             @NotNull @RequestParam("role") UserRole role
