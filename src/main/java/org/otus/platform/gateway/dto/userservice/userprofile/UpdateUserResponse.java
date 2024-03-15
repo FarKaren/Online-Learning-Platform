@@ -1,4 +1,4 @@
-package org.otus.platform.gateway.dto.user.userprofile;
+package org.otus.platform.gateway.dto.userservice.userprofile;
 
 import lombok.Builder;
 import org.otus.platform.gateway.security.user.UserRole;

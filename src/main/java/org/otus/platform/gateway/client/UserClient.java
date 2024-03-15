@@ -2,9 +2,9 @@ package org.otus.platform.gateway.client;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import org.otus.platform.gateway.dto.user.UserDto;
-import org.otus.platform.gateway.dto.user.auth.register.CreateUserRequest;
-import org.otus.platform.gateway.dto.user.userprofile.UpdateUserRequest;
+import org.otus.platform.gateway.dto.userservice.UserDto;
+import org.otus.platform.gateway.dto.userservice.auth.register.CreateUserRequest;
+import org.otus.platform.gateway.dto.userservice.userprofile.UpdateUserRequest;
 import org.otus.platform.gateway.security.user.UserRole;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@FeignClient("USERSERVICE/api/v1/user")
+@FeignClient("USERSERVICE/user")
 public interface UserClient {
 
     @GetMapping("/{id}")

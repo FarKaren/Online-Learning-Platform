@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.otus.platform.gateway.client.UserClient;
-import org.otus.platform.gateway.dto.user.UserDto;
+import org.otus.platform.gateway.dto.userservice.UserDto;
 import org.otus.platform.gateway.security.jwt.JwtObject;
 import org.otus.platform.gateway.security.jwt.JwtService;
 import org.otus.platform.gateway.security.user.CustomUserDetails;

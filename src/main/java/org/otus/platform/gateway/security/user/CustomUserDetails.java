@@ -1,6 +1,6 @@
 package org.otus.platform.gateway.security.user;
 
-import org.otus.platform.gateway.dto.user.UserDto;
+import org.otus.platform.gateway.dto.userservice.UserDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

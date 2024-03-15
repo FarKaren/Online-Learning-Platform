@@ -1,4 +1,4 @@
-package org.otus.platform.gateway.dto.user.auth.refresh;
+package org.otus.platform.gateway.dto.userservice.auth.refresh;
 
 import jakarta.validation.constraints.NotNull;
 
