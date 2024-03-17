@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -34,14 +35,24 @@ public class ExceptionHandlerController {
     @ExceptionHandler(FeignException.class)
     public ResponseEntity<String> feignExceptionHandler(FeignException exception) {
         ResponseEntity.BodyBuilder responseBuilder = getDefaultResponseEntityBuilder(exception.status());
-
         Optional<ByteBuffer> body = exception.responseBody();
         if (body.isPresent()) {
             String message = getDecodedResponseBody(body.get());
+            log.error("Internal server error. " + message);
             return responseBuilder.body(message);
         }
 
         return responseBuilder.build();
+    }
+
+    @ResponseStatus(code = HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorDto> accessDeniedExceptionHandler(AccessDeniedException e) {
+        log.error("Access denied. " + e.getMessage());
+        return createResponseEntity(
+                HttpStatus.FORBIDDEN,
+                new ErrorDto(Integer.toString(HttpStatus.FORBIDDEN.value()),
+                        e.getMessage()));
     }
 
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)

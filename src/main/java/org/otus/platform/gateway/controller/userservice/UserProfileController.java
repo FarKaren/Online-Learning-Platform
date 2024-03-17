@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.otus.platform.gateway.dto.userservice.UserDto;
 import org.otus.platform.gateway.dto.userservice.userprofile.UpdateUserRequest;
 import org.otus.platform.gateway.dto.userservice.userprofile.UpdateUserResponse;
 import org.otus.platform.gateway.security.user.UserRole;
@@ -27,6 +28,22 @@ import java.util.UUID;
 public class UserProfileController {
 
     private final UserProfileService userProfileService;
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_TEACHER')")
+    @Operation(summary = "Get user by id")
+    ResponseEntity<UserDto> getUserById(@NotNull @PathVariable UUID id) {
+        var response = userProfileService.getUserById(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/email")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_TEACHER')")
+    @Operation(summary = "Get user by email")
+    ResponseEntity<UserDto> getUserByEmail(@NotNull @RequestParam String email) {
+        var response = userProfileService.getUserByEmail(email);
+        return ResponseEntity.ok(response);
+    }
 
     @PutMapping("/update")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_TEACHER')")
