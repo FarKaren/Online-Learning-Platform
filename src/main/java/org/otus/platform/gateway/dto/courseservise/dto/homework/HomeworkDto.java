@@ -11,7 +11,8 @@ public record HomeworkDto(
         UUID course,
         UUID student,
         UUID teacher,
-        Boolean onReview,
-        ZonedDateTime added
+        CompleteStatus completeStatus,
+        ZonedDateTime added,
+        String content
 ) {
 }

@@ -29,7 +29,7 @@ public class UserProfileController {
     private final UserProfileService userProfileService;
 
     @PutMapping("/update")
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_TEACHER')")
     @Operation(summary = "Update user")
     ResponseEntity<UpdateUserResponse> updateUser(@Valid @RequestBody UpdateUserRequest request) {
         var response = userProfileService.updateUser(request);

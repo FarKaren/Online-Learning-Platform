@@ -14,10 +14,10 @@ public interface CourseClient {
 
     @GetMapping("/{id}")
     ResponseEntity<CourseDto> getCourseById(@NotNull @PathVariable UUID id);
-    @GetMapping("/list/{userId}")
+    @GetMapping("/list/{id}")
     ResponseEntity<CourseListDto> getCoursesByUser(@NotNull @PathVariable UUID id);
 
-    @GetMapping("/users/{courseId}")
+    @GetMapping("/users/{id}")
     ResponseEntity<CourseUserListDto> getUsersByCourse(@NotNull @PathVariable UUID id);
 
     @PostMapping("/create")
@@ -27,5 +27,8 @@ public interface CourseClient {
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteCourse(@NotNull @PathVariable UUID id);
+
+    @PostMapping("/join")
+    ResponseEntity<CourseDto> joinToCourse(@Valid @RequestBody JoinToCourseRequest request);
 
 }

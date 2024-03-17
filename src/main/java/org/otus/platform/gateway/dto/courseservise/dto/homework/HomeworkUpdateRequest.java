@@ -16,6 +16,6 @@ public record HomeworkUpdateRequest(
         @NotNull
         UUID teacherId,
         @NotNull
-        Boolean onReview
+        String content
 ) {
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import org.otus.platform.gateway.dto.courseservise.dto.homework.HomeworkCreateRequest;
 import org.otus.platform.gateway.dto.courseservise.dto.homework.HomeworkDto;
 import org.otus.platform.gateway.dto.courseservise.dto.homework.HomeworkUpdateRequest;
+import org.otus.platform.gateway.dto.courseservise.dto.homework.UpdateHomeworkStatusRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,4 +26,7 @@ public interface HomeworkClient {
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteHomework(@NotNull @PathVariable UUID id);
+
+    @PutMapping("/update/homework/status")
+    ResponseEntity<HomeworkDto> updateHomeworkStatus(@Valid @RequestBody UpdateHomeworkStatusRequest request);
 }
