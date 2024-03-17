@@ -11,6 +11,7 @@ public record HomeworkDto(
         UUID course,
         UUID student,
         UUID teacher,
+        UUID vebinarId,
         CompleteStatus completeStatus,
         ZonedDateTime added,
         String content
