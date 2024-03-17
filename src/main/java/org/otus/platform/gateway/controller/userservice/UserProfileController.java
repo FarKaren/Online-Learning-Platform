@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.otus.platform.gateway.dto.user.userprofile.UpdateUserRequest;
-import org.otus.platform.gateway.dto.user.userprofile.UpdateUserResponse;
+import org.otus.platform.gateway.dto.userservice.userprofile.UpdateUserRequest;
+import org.otus.platform.gateway.dto.userservice.userprofile.UpdateUserResponse;
 import org.otus.platform.gateway.security.user.UserRole;
 import org.otus.platform.gateway.service.userservice.profile.UserProfileService;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class UserProfileController {
     private final UserProfileService userProfileService;
 
     @PutMapping("/update")
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_TEACHER')")
     @Operation(summary = "Update user")
     ResponseEntity<UpdateUserResponse> updateUser(@Valid @RequestBody UpdateUserRequest request) {
         var response = userProfileService.updateUser(request);

@@ -2,8 +2,8 @@ package org.otus.platform.gateway.service.userservice.auth.refreshtoken;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.otus.platform.gateway.dto.user.auth.refresh.RefreshTokenRequest;
-import org.otus.platform.gateway.dto.user.auth.refresh.RefreshTokenResponse;
+import org.otus.platform.gateway.dto.userservice.auth.refresh.RefreshTokenRequest;
+import org.otus.platform.gateway.dto.userservice.auth.refresh.RefreshTokenResponse;
 import org.otus.platform.gateway.exception.exceptions.AuthenticationFailedException;
 import org.otus.platform.gateway.security.jwt.JwtService;
 import org.otus.platform.gateway.security.user.CustomUserDetails;

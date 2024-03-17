@@ -1,9 +1,9 @@
 package org.otus.platform.gateway.mapper.userservice;
 
-import org.otus.platform.gateway.dto.user.UserDto;
-import org.otus.platform.gateway.dto.user.auth.register.CreateUserRequest;
-import org.otus.platform.gateway.dto.user.auth.register.RegistrationRequest;
-import org.otus.platform.gateway.dto.user.userprofile.UpdateUserResponse;
+import org.otus.platform.gateway.dto.userservice.UserDto;
+import org.otus.platform.gateway.dto.userservice.auth.register.CreateUserRequest;
+import org.otus.platform.gateway.dto.userservice.auth.register.RegistrationRequest;
+import org.otus.platform.gateway.dto.userservice.userprofile.UpdateUserResponse;
 import org.springframework.stereotype.Component;
 
 @Component

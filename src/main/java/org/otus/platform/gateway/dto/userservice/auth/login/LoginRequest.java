@@ -1,4 +1,4 @@
-package org.otus.platform.gateway.dto.user.auth.login;
+package org.otus.platform.gateway.dto.userservice.auth.login;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
