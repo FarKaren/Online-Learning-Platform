@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: ${USER_SERVICE_PORT:8081}
 
 spring:
   application:
-    name: gateway
+    name: ${APPLICATION_NAME:gateway}
   cloud:
     config:
       enabled: false
@@ -43,10 +43,10 @@ feign:
 jwt:
   key: ${JWT_SECRET_KEY:W9OMCk4VNdPpCzTB0JltwhOZmXkn6eqB81J27cXy8frZZy+2fNMcUxpObC0JB5y6}
   refreshKey: ${JWT_SECRET_REFRESH_KEY:mF2qDckO2fPuOx9i/tEgLJHheBWElCVOHYuESW/bdKksiCOsGpHAKADjcQlBZrUD}
-  expirationSec: 3600 # 1h
-  refreshExpirationSec: 1800 # 30m
-  issuer: localhost
-  audience: localhost
+  expirationSec: ${EXPIRATION_SECONDS:3600} # 1h
+  refreshExpirationSec: ${REFRESH_EXPIRATION_SECONDS:1800} # 30m
+  issuer: ${ISSUER:localhost}
+  audience: ${AUDIENCE:localhost}
 
 app:
   openfeign:
